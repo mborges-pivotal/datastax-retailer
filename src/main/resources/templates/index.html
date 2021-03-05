@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Retailer Demo</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <a href="http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config">API doc</a>
+    <a href="https://9a0ce99e-185f-4cac-9b08-5058fd9e9f73-us-east1.apps.astra.datastax.com/api/rest/swagger-ui/">DataStax API Doc</a>
+    <p>link to tests/simulations</p> 
+    <!-- <p th:text="'Hello, ' + ${name} + '!'" /> -->
+
+	<h1>Update Stock</h1>
+    <form action="#" th:action="@{/stock}" th:object="${stock}" method="post">
+    	<p>Store: <input type="text" th:field="*{store}" /></p>
+    	<p>Unique Id: <input type="text" th:field="*{uniqId}" /></p>
+    	<p>SKU: <input type="text" th:field="*{sku}" /></p>
+        <p>Total Units: <input type="text" th:field="*{totalUnits}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</body>
+</html>
