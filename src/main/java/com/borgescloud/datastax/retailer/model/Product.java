@@ -12,6 +12,7 @@ public class Product {
     private String sku;
     @JsonAlias("name_title")
     private String nameTitle;
+    private String category;
     @JsonAlias("list_price")
     private float listPrice;
     @JsonAlias("sale_price")

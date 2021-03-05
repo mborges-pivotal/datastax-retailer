@@ -22,6 +22,7 @@ public class DemoWebController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("stock", new Stock());
+        model.addAttribute("products", service.listProducts());
         return "index";
     }
 

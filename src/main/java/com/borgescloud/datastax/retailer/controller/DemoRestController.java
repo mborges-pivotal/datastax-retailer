@@ -116,16 +116,20 @@ public class DemoRestController {
         headers.set("x-cassandra-token", authToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Product p = getProduct(stock.getUniqId(), stock.getSku());
-        // stock.setSku(p.getSku());
+        // Should denormalize the table
+        Product p = getProduct(stock.getUniqId(), stock.getSku());
+        stock.setNameTitle(p.getNameTitle());
+        stock.setSalePrice(p.getSalePrice());
 
-        ChangeSet cs = new ChangeSet();
-        cs.addChanges("total_units", "" + stock.getTotalUnits());
-        String csJson = objectMapper.writeValueAsString(cs);
+        // ChangeSet cs = new ChangeSet();
+        // cs.addChanges("total_units", "" + stock.getTotalUnits());
+        // String csJson = objectMapper.writeValueAsString(cs);
 
-        Map<String, Integer> mapCs = new HashMap<String, Integer>();
+        Map<String, Object> mapCs = new HashMap<String, Object>();
+        mapCs.put("name_title", stock.getNameTitle());
+        mapCs.put("sale_price", stock.getSalePrice());
         mapCs.put("total_units", stock.getTotalUnits());
-        csJson = objectMapper.writeValueAsString(mapCs);
+        String csJson = objectMapper.writeValueAsString(mapCs);
 
         HttpEntity<String> request = new HttpEntity<String>(csJson, headers);
 
