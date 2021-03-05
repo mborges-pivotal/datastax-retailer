@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/mborges-pivotal/datastax-retailer)
+
 # Sample SpringBoot application using Datastax Astra REST APIs
 Very simple application exercising the REST APIs. There is an intent to also test the kafka connector.
 
