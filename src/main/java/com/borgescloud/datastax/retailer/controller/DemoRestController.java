@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.borgescloud.datastax.retailer.model.ChangeSet;
+// import com.borgescloud.datastax.retailer.model.ChangeSet;
 import com.borgescloud.datastax.retailer.model.Credential;
 import com.borgescloud.datastax.retailer.model.Product;
 import com.borgescloud.datastax.retailer.model.ProductRows;
@@ -28,17 +28,23 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/demo")
 public class DemoRestController {
 
-    private static final String ASTRA_DB_ID = "9a0ce99e-185f-4cac-9b08-5058fd9e9f73";
-    private static final String ASTRA_DB_REGION = "us-east1";
-    private static final String ASTRA_DB_USERNAME = "mborges";
-    private static final String ASTRA_DB_KEYSPACE = "retailer";
-    private static final String ASTRA_DB_PASSWORD = "changeme";
+    @Value("${ASTRA_DB_ID:86cc0804-5759-459d-b989-3885662e01d9}")
+    private String ASTRA_DB_ID;
+    @Value("${ASTRA_DB_REGION:us-west1}")
+    private String ASTRA_DB_REGION;
+    @Value("${ASTRA_DB_USERNAME:YvtXEZHRRtcdLecgyEKMNCMg}")
+    private String ASTRA_DB_USERNAME;
+    @Value("${ASTRA_DB_PASSWORD:Q0ZWn-,nzT.s+rAM0f8Ol61.I42Fe+xyb21x_YMY1wXP+Cdc5-5AP+bltm,BpXdTJb+s3qzQOPE6n3Xy9eb_012zwb_ar6,oHZMXU0WitruZSyAQ+QRFFUFb.L0,PLQR}")
+    private String ASTRA_DB_PASSWORD;
+    @Value("${ASTRA_DB_KEYSPACE:retailer}")
+    private String ASTRA_DB_KEYSPACE;
 
     private final String authTokenTemplate = "https://%s-%s.apps.astra.datastax.com/api/rest/v1/auth";
     private final String dataTemplate = "https://%s-%s.apps.astra.datastax.com/api/rest/v1/keyspaces/%s/tables/%s/rows/%s";
@@ -78,6 +84,7 @@ public class DemoRestController {
      */
     @RequestMapping(value = "/products/{uniqId}/{sku}", method = RequestMethod.GET)
     public Product getProduct(@PathVariable("uniqId") String uniqId, @PathVariable("sku") String sku) {
+        
         String authToken = getAuthToken();
         log.info("calling get product with authtoken {} from Astra", authToken);
 
@@ -125,13 +132,13 @@ public class DemoRestController {
         // cs.addChanges("total_units", "" + stock.getTotalUnits());
         // String csJson = objectMapper.writeValueAsString(cs);
 
-        Map<String, Object> mapCs = new HashMap<String, Object>();
+        Map<String, Object> mapCs = new HashMap<>();
         mapCs.put("name_title", stock.getNameTitle());
         mapCs.put("sale_price", stock.getSalePrice());
         mapCs.put("total_units", stock.getTotalUnits());
         String csJson = objectMapper.writeValueAsString(mapCs);
 
-        HttpEntity<String> request = new HttpEntity<String>(csJson, headers);
+        HttpEntity<String> request = new HttpEntity<>(csJson, headers);
 
         String url = String.format(dataTemplate2, ASTRA_DB_ID, ASTRA_DB_REGION, ASTRA_DB_KEYSPACE, "assortment_price",
                 stock.getPrimaryKey());

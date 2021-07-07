@@ -1,0 +1,110 @@
+<header class="masthead mb-auto" th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="fixed-top">
+  
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+  
+        <!-- BRAND -->
+        <a class="navbar-brand" href="/">Datastax - Retailer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- LEFT NAV -->
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+
+            <!-- <li class="nav-item" th:classappend="${pageName == 'Workspaces'} ? 'active' : ''">
+              <a class="nav-link" href="/workspaces/">Workspaces</a>
+            </li>
+            <li class="nav-item" th:classappend="${pageName == 'Upload'} ? 'active' : ''">
+              <a class="nav-link" href="/upload">Upload</a>
+            </li>
+            <li class="nav-item" th:classappend="${pageName == 'Reports'} ? 'active' : ''">
+              <a class="nav-link" href="/reports/">Reports</a>
+            </li> -->
+  
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Documentation</a>
+              <div class="dropdown-menu">
+                  <!-- <a href="/docs/" class="dropdown-item">Recipes and Patterns</a>
+                  <div class="dropdown-divider"></div> -->
+                  <a href="#"class="dropdown-item" data-toggle="modal" data-target="#helpModel">Help</a>
+              </div>
+          </li>
+  
+          </ul>
+        </div>
+  
+        <!-- RIGHT NAV -->
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+  
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600" sec:authentication="name"></span>
+                <svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+              </a>
+  
+              <div sec:authorize="isAnonymous()">
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="https://86cc0804-5759-459d-b989-3885662e01d9-us-west1.apps.astra.datastax.com/api/rest/swagger-ui/">
+                    <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Datastax Astra APIs 
+                  </a>
+                  <a class="dropdown-item" href="/management/swagger-ui.html">
+                    <i class="fas fa-code fa-sm fa-fw mr-2 text-gray-400"></i>
+                    API Docs
+                  </a>
+                  <a class="dropdown-item" href="/login.html">
+                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Login
+                  </a>
+                </div>
+              </div>
+  
+              <div sec:authorize="isAuthenticated()">
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <!-- <a class="dropdown-item" href="/logout.html">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="/logout.html">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="/logout.html">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a> -->
+                  <a class="dropdown-item" href="/management/status">
+                    <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Status
+                  </a>
+                  <a class="dropdown-item" href="/management/swagger-ui.html">
+                    <i class="fas fa-code fa-sm fa-fw mr-2 text-gray-400"></i>
+                    API Docs
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/parameters/">
+                    <i class="fas fa-sliders-h fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Parameters
+                  </a>
+                  <a class="dropdown-item" href="/logout.html">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </div>
+  
+            </li>
+          </ul>
+        </div>
+  
+    </div>
+  </header>

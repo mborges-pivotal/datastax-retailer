@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS retailer.product (
     product_url text,
     sale_price decimal,
     total_number_reviews int,
-    PRIMARY KEY ((uniq_id, sku), name_title)
+    PRIMARY KEY ((uniq_id), sku, name_title)
 );
 
 CREATE TABLE IF NOT EXISTS retailer.assortment_price (
@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS retailer.assortment_price (
     name_title text,
     total_units int,
     sale_price decimal,
-    PRIMARY KEY ((store, uniq_id, sku))
+    PRIMARY KEY ((store), uniq_id, sku)
 );
 

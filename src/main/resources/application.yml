@@ -1,0 +1,38 @@
+
+springdoc.swagger-ui.path: /management/swagger-ui.html
+
+# ##===============================
+# Astra Configuration
+# ##===============================
+ASTRA_DB_ID: 86cc0804-5759-459d-b989-3885662e01d9
+ASTRA_DB_REGION: us-west1
+ASTRA_DB_USERNAME: YvtXEZHRRtcdLecgyEKMNCMg
+ASTRA_DB_PASSWORD: Q0ZWn-,nzT.s+rAM0f8Ol61.I42Fe+xyb21x_YMY1wXP+Cdc5-5AP+bltm,BpXdTJb+s3qzQOPE6n3Xy9eb_012zwb_ar6,oHZMXU0WitruZSyAQ+QRFFUFb.L0,PLQR
+ASTRA_DB_KEYSPACE: retailer
+
+# ##===============================
+# = SPRING - Static resources
+# ##===============================
+
+spring:
+
+  application:
+    name: retailer
+
+  # data.rest.base-path: /api/repo/
+
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+
+# ===============================
+# = LOGGING
+# ===============================
+logging:
+  level: 
+    org.springframework.web: WARN
+    org.springframework.data: WARN
+    org.springframework.boot.test: WARN
+    org.springframework.test: WARN
