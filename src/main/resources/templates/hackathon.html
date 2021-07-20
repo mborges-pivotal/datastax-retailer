@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+
+<head>
+    <th:block layout:fragment="page-css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+            integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
+            crossorigin="anonymous" />
+    </th:block>
+</head>
+
+<body>
+
+    <div layout:fragment="content" class="container-fluid">
+
+        <main role="main">
+
+            <span id="helpName" style="display: none;">hackathon</span>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8">
+                        <h2>Astra-nomy</h2>
+
+                        <img src="/images/architecture.jpg" width="798" height="508" alt="architecture"
+                            usemap="#architecturemap">
+                        <map name="architecturemap">
+                            <area class="hackmap" title="restAPI" href="" coords="579,163,459,9" shape="rect">
+                            <area class="hackmap" target="" alt="" title="streaming" href="" coords="462,350,3,505"
+                                shape="rect">
+                            <area class="hackmap" title="graphQLAPI" href="" coords="227,319,424,229" shape="rect">
+                            <area class="hackmap" title="cqlAPI" href="" coords="605,227,732,344" shape="rect">
+                            <area class="hackmap" title="iotDocAPI" href="" coords="264,135,330,91,440,184,398,214"
+                                shape="poly">
+                            <area class="hackmap" title="batchDocAPI" href=""
+                                coords="578,177,676,100,748,98,748,153,605,215" shape="poly">
+                        </map>
+                        <div id="status" class="mt-4 alert alert-success" role="alert">Messages</div>
+                    </div>
+                </div> <!-- row -->
+            </div>
+        </main>
+
+    </div>
+
+    <th:block layout:fragment="page-scripts">
+        <script th:inline="javascript">
+
+            $('#nav-list a').on('click', function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            $(".hackmap").on("click", function (e) {
+                e.preventDefault();
+
+                var test = e.target.title;
+                alert('test ' + test);
+
+                if (test == "restAPI") {
+                } else if (test == "graphQLAPI") {
+                } else if (test == "cqlAPI") {
+                } else if (test == "iotDocAPI") {
+                    $.get("/api/hackathon/iot", function (result) {
+                        $('#status').html(result);
+                    });
+                } else if (test == "batchDocAPI") {
+                }
+
+            });
+
+        </script>
+    </th:block>
+
+</body>
+
+</html>

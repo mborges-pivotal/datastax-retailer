@@ -57,11 +57,12 @@ public class DemoWebController extends BaseController {
   // Applications
   ////////////////////////////////////
 
-  @GetMapping("/")
+  @GetMapping("/retailer")
   public String index(Model model) {
+    model.addAttribute("pageName", "Retailer");
     model.addAttribute("stock", new Stock());
     model.addAttribute("products", service.listProducts());
-    return "index";
+    return "retailer";
   }
 
   @PostMapping("/stock")
